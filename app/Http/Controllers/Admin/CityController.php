@@ -43,7 +43,7 @@ class CityController extends Controller
         ]);
 
         $city = City::create($request->all());
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.cities.index')->with('message', 'City successfuly inserted!');
     }
 
     /**
@@ -65,6 +65,10 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
+        $validator = $request->validate([
+            'name' => 'required'
+        ]);
+
         return view('admin.cities.edit', compact('city'));
     }
 

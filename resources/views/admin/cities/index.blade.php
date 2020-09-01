@@ -8,6 +8,9 @@
                 <div class="card-header">Cities</div>
 
                 <div class="card-body">
+                    <div class="alert alert-success">
+                        <strong>{{ $message }}</strong>
+                    </div>
                     <a href="{{ route('admin.cities.create') }}" class="btn btn-primary mb-3">Add new</a>
 
                     <table class="table table-bordered text-center">
