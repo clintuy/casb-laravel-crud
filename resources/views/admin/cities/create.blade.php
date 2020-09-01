@@ -13,10 +13,17 @@
 
                         <label for="name">Name:</label>
                         <input type="text" name="name" class="form-control mb-3" />
+                        
+
 
                         <input type="submit" value="Save" class="btn btn-primary" />
 
                     </form>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
         </div>
