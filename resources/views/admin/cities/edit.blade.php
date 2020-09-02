@@ -8,6 +8,17 @@
                 <div class="card-header">Edit city</div>
 
                 <div class="card-body">
+                
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('admin.cities.update', $city->id) }}">
                     {{ method_field('PUT') }}
                     @csrf

@@ -3,23 +3,29 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Cities</div>
 
                 <div class="card-body">
-                    <div class="alert alert-success">
-                        <strong>{{ $message }}</strong>
-                    </div>
+
                     <a href="{{ route('admin.cities.create') }}" class="btn btn-primary mb-3">Add new</a>
+
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
 
                     <table class="table table-bordered text-center">
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
-                            <th>Action</th>
+                            <th width="500px">Action</th>
                         </tr>
                         @forelse($cities as $city)
                             <tr>
+                                <td>{{ ++$i }}</td>
                                 <td>{{ $city->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.cities.edit', $city->id) }}" class="btn btn-secondary">
@@ -41,6 +47,8 @@
                             </tr>
                         @endforelse
                     </table>
+
+                    {{ $cities->links() }}
                 </div>
             </div>
         </div>

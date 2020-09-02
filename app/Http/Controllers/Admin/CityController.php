@@ -16,8 +16,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all();
-        return view('admin.cities.index' , compact('cities'));
+        $cities = City::latest()->paginate(5);
+        return view('admin.cities.index' , compact('cities'))->with('i', (request()->input('page', 1)-1)*5);
     }
 
     /**
@@ -43,7 +43,8 @@ class CityController extends Controller
         ]);
 
         $city = City::create($request->all());
-        return redirect()->route('admin.cities.index')->with('message', 'City successfuly inserted!');
+        return redirect()->route('admin.cities.index')
+            ->with('success', 'City successfuly created!');
     }
 
     /**
@@ -65,10 +66,6 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        $validator = $request->validate([
-            'name' => 'required'
-        ]);
-
         return view('admin.cities.edit', compact('city'));
     }
 
@@ -81,8 +78,13 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
+        $validator = $request->validate([
+            'name' => 'required'
+        ]);
+
         $city->update($request->all());
-        return redirect()->route('admin.cities.index');
+        return redirect()->route('admin.cities.index')
+        ->with('success', 'City successfuly updated!');;
     }
 
     /**

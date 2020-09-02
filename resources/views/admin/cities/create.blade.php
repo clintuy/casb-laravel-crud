@@ -8,16 +8,22 @@
                 <div class="card-header">Add new city</div>
 
                 <div class="card-body">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('admin.cities.store') }}">
                     @csrf
 
                         <label for="name">Name:</label>
                         <input type="text" name="name" class="form-control mb-3" />
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <input type="submit" value="Save" class="btn btn-primary" />
 
