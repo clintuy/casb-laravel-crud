@@ -1,5 +1,5 @@
 # Prerequisites
-<hr>
+
 ## After cloning this repository, open the file, go to your termnial and run the following command(s)
 	$ composer install
 	$ composer update 
