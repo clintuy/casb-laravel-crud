@@ -1,3 +1,15 @@
+<h1>Prerequisites</h1>
+<hr>
+
+<ul>
+    <li>After cloning this repository, open the file, go to your termnial and run the following command(s)</li>
+        <card-body>
+            - composer install
+            - composer update
+        </card-body>
+    <li></li>
+</ul>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
