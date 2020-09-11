@@ -16,7 +16,25 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-
+                    <form method="GET" action="{{ route('search') }}" role="search">
+                        <div class="col-md-4 offset-md-8 p-0">
+                            <div class="input-group  mb-3">
+                                <input 
+                                    name="search" 
+                                    type="search" 
+                                    value="{{ $search }}"
+                                    class="form-control" 
+                                    placeholder="Search here" 
+                                    aria-label="Search here" 
+                                    aria-describedby="basic-addon2"
+                                />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
                     <table class="table table-bordered text-center">
                         <tr>
                             <th>ID</th>
@@ -25,7 +43,7 @@
                         </tr>
                         @forelse($cities as $city)
                             <tr>
-                                <td>{{ ++$i }}</td>
+                                <td>{{ $city->id }}</td>
                                 <td>{{ $city->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.cities.edit', $city->id) }}" class="btn btn-secondary">
@@ -41,14 +59,14 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                                     No records found.
                                 </td>
                             </tr>
                         @endforelse
                     </table>
 
-                    {{ $cities->links() }}
+                    {{ $cities->appends(Request::except('page'))->render() }}
                 </div>
             </div>
         </div>

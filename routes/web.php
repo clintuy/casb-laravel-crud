@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('admin/cities/search', 'Admin\CityController@search')->name('search');
+
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('cities', 'Admin\CityController');
 });

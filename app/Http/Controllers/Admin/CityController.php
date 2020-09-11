@@ -16,8 +16,10 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::latest()->paginate(5);
-        return view('admin.cities.index' , compact('cities'))->with('i', (request()->input('page', 1)-1)*5);
+        $cities = City::latest()->paginate(10);
+        $search = "";
+        return view('admin.cities.index' , compact('cities', 'search'))->with('i', (request()->input('page', 1)-1)*10);
+        
     }
 
     /**
@@ -47,6 +49,12 @@ class CityController extends Controller
             ->with('success', 'City successfuly created!');
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $cities = City::where('name', "LIKE", '%' . $search . '%')->latest()->paginate(5);
+        return view('admin.cities.index' , compact('cities', 'search'))->with('i', (request()->input('page', 1)-1)*5);
+    }
     /**
      * Display the specified resource.
      *
