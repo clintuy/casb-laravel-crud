@@ -1,16 +1,13 @@
-<h1>Prerequisites</h1>
+# Prerequisites
 <hr>
-
-<ul>
-    <li>After cloning this repository, open the file, go to your termnial and run the following command(s)</li>
-    
+    ## After cloning this repository, open the file, go to your termnial and run the following command(s)
         $ composer install
-        $ composer update
-        
-    <li>cp .env.example .env</li>
-    <li>Run</li>
+        $ composer update 
+        $ cp .env.example .env
+    ## Run
         $ php artisan key:generate
-   <li>Run</li>
+   ## Run
         $ php artisan migrate
-</ul>
+
+
 
